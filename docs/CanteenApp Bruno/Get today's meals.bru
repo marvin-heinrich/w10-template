@@ -1,0 +1,11 @@
+meta {
+  name: Get today's meals
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/api/mensa-garching/today
+  body: none
+  auth: inherit
+}

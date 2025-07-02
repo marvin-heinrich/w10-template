@@ -1,0 +1,15 @@
+meta {
+  name: Create preference
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/api/preferences/test?meal=Pommes
+  body: none
+  auth: inherit
+}
+
+params:query {
+  meal: Pommes
+}

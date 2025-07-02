@@ -1,0 +1,29 @@
+meta {
+  name: Get LLM recommendation
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:5000/recommend
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "favorite_menu": [
+      "Chicken Alfredo",
+      "Caesar Salad",
+      "Margherita Pizza",
+      "Grilled Salmon"
+    ],
+    "todays_menu": [
+      "Beef Tacos",
+      "Chicken Alfredo Pasta",
+      "Greek Salad",
+      "Vegetarian Pizza",
+      "Fish and Chips"
+    ]
+  }
+}
