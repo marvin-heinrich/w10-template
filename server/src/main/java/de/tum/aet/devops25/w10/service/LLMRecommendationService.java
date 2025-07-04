@@ -29,7 +29,7 @@ public class LLMRecommendationService {
                     .map(Dish::name)
                     .collect(Collectors.toList());
 
-            // TODO Call REST service
+            // Call REST service
             return llmRestClient.generateRecommendations(favoriteMeals, todayMealNames);
 
         } catch (Exception e) {

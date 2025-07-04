@@ -39,7 +39,7 @@ public class RecommendationController {
         //Get the today's menu from canteenService.getTodayMeals
         List<Dish> todaysMeals = canteenService.getTodayMeals("mensa-garching");
 
-        // TODO call LLM service to get recommendation based on the user's favorites
+        // Call LLM service to get recommendation based on the user's favorites
         String responseFromLLMService = llmRecommendationService.getRecommendationFromLLM(userPreferences.getFavoriteMeals(), todaysMeals);
 
         if (responseFromLLMService.isEmpty()) {

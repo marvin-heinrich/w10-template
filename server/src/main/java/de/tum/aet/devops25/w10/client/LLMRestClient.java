@@ -28,10 +28,8 @@ public class LLMRestClient {
      */
     public String generateRecommendations(List<String> favoriteMenu, List<String> todaysMenu) {
         try {
-            // TODO Create request body
             RecommendRequest request = new RecommendRequest(favoriteMenu, todaysMenu);
 
-            // TODO Make REST call
             RecommendResponse response = restClient.post()
                     .uri("/recommend")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -39,7 +37,6 @@ public class LLMRestClient {
                     .retrieve()
                     .body(RecommendResponse.class);
 
-            // TODO Extract the recommendation
             return response != null ? response.recommendation() : "";
 
         } catch (Exception e) {
