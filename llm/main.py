@@ -52,7 +52,7 @@ class OpenWebUILLM(LLM):
     
     api_url: str = API_URL
     api_key: str = CHAIR_API_KEY
-    model_name: str = "llama3:latest"
+    model_name: str = "llama3.3:latest"
     
     @property
     def _llm_type(self) -> str:

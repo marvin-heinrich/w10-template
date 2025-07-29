@@ -23,19 +23,18 @@ export const load: PageLoad = async ({ fetch }) => {
     }
 
     // Execute all requests in parallel, don't wait for slow ones to complete
-    const [mealsResult, preferencesResult, recommendationResult] = await Promise.allSettled([
+    const [mealsResult, preferencesResult, recommendationResult, featureToggleResult] = await Promise.allSettled([
         fetch(`${BaseURL}/mensa-garching/today`).then(res => res.json()),
         fetch(`${BaseURL}/preferences/${username}`).then(res => res.json()),
         fetch(`${BaseURL}/recommend/${username}`).then(res => res.json()),
-        // TODO fetch the feature toggle state for the menu filter
+        fetch(`${BaseURL}/features/menu-filter`).then(res => res.json())
     ]);
 
     // Extract successful results or provide defaults
     const meals: Meal[] = mealsResult.status === 'fulfilled' ? mealsResult.value : [];
     const preferences: UserPreferences = preferencesResult.status === 'fulfilled' ? preferencesResult.value : { favoriteMeals: [] };
     const recommendation: Recommendation | null = recommendationResult.status === 'fulfilled' ? recommendationResult.value : null;
-    // TODO change the following line to fetch the feature toggle state for the menu filter
-    const menuFilterEnabled: boolean = false;
+    const menuFilterEnabled: boolean = featureToggleResult.status === 'fulfilled' ? featureToggleResult.value : false;
 
     console.log('Meals:', meals);
     console.log('Preferences:', preferences);
